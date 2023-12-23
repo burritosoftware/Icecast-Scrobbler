@@ -1,7 +1,7 @@
 # Icecast Scrobbler
 ![Icons](https://skillicons.dev/icons?i=py)
 
-[![wakatime](https://wakatime.com/badge/github/burritosoftware/Icecast-Scrobbler.svg)](https://wakatime.com/badge/github/burritosoftware/Icecast-Scrobbler) [![Last updated](https://img.shields.io/github/last-commit/burritosoftware/Icecast-Scrobbler/pages?logo=github&label=last%20updated)](https://github.com/burritosoftware/Icecast-Scrobbler/commits/pages/)
+[![wakatime](https://wakatime.com/badge/github/burritosoftware/Icecast-Scrobbler.svg)](https://wakatime.com/badge/github/burritosoftware/Icecast-Scrobbler) [![Last updated](https://img.shields.io/github/last-commit/burritosoftware/Icecast-Scrobbler/master?logo=github&label=last%20updated)](https://github.com/burritosoftware/Icecast-Scrobbler/commits/master)
 
 An Icecast internet radio scrobbler for Last.fm, primarily designed for [Friday Night Tracks](https://fridaynighttracks.com).
 
