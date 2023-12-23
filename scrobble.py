@@ -22,6 +22,7 @@ while True:
   
   # Clean the song variable by removing (Original Mix) if it exists
   song = song.replace("(Original Mix)", "").strip()
+  song = song.replace("[FNT Edit]", "").strip()
 
   # Update the current now playing every update (songs can be long)
   LASTFM_NETWORK.update_now_playing(
@@ -42,6 +43,7 @@ while True:
       last_artist, last_song = last_details.rsplit(" - ", 1)
       last_artist = last_artist.split(",")[0]
       last_song = last_song.replace("(Original Mix)", "").strip()
+      last_song = last_song.replace("[FNT Edit]", "").strip()
       managers.lastfm.scrobble(last_artist, last_song, timestamp)
       print(f"Scrobbled {last_artist} - {last_song}")
   time.sleep(UPDATE_FREQUENCY)
