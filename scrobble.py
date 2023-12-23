@@ -59,7 +59,7 @@ while True:
       managers.lastfm.scrobble(artist=last_details['artist'], song=last_details['song'], timestamp=timestamp)
       print(f"Scrobbled: {last_details['artist']} - {last_details['song']}")
 
-    last_details = current_details
-    print()
-  
+    last_details = current_details.copy()
+    print("Finished updating\n")
+
   time.sleep(UPDATE_FREQUENCY)
