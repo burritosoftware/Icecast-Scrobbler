@@ -23,16 +23,18 @@ while True:
   # Clean the song variable by removing (Original Mix) if it exists
   song = song.replace("(Original Mix)", "").strip()
 
+  # Update the current now playing every update (songs can be long)
+  LASTFM_NETWORK.update_now_playing(
+      artist=artist,
+      title=song
+  )
+
   # If the song changed, update Last.fm
   if details != current_details:
     print("\nOop, new change!")
     # Update the current now playing
     last_details = current_details
     current_details = details
-    LASTFM_NETWORK.update_now_playing(
-      artist=artist,
-      title=song
-    )
     print(f"Updated now playing to {artist} - {song}")
 
     # Scrobble the last song if there was a last song
