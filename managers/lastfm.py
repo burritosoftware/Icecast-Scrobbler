@@ -32,3 +32,13 @@ def get_network():
 
   network.session_key = session_key
   return network
+
+def scrobble(artist, song, timestamp):
+  # Make a manual request to Last.fm to scrobble the song using the network.session_key for auth
+  params = {
+    "artist": artist,
+    "track": song,
+    "timestamp": timestamp,
+    "chosenByUser": 0
+  }
+  pylast._Request(get_network(), "track.scrobble", params).execute()
