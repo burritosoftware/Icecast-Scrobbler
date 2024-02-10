@@ -27,31 +27,31 @@ while True:
   current_details['artist'] = artist
   current_details['song'] = song
   
-  # Update the current now playing every update (songs can be long) (only if album key does not exist and isn't pylast.WSError)
-  if 'album' not in current_details:
+  if 'album' in current_details:
+    if current_details['album'] != "icecast-scrobbler.albumnotfound":
+      LASTFM_NETWORK.update_now_playing(
+          artist=artist,
+          title=song,
+          album=current_details['album']
+      )
+    else:
+      LASTFM_NETWORK.update_now_playing(
+          artist=artist,
+          title=song
+      )
+
+  # If the song changed, update Last.fm
+  if last_details != current_details:
+    # Update the current now playing
+    print(f"Updated now playing: {artist} - {song}")
+
+    # Update the current now playing every update (songs can be long) (only if album key does not exist and isn't pylast.WSError)
     try:
       current_details['album'] = LASTFM_NETWORK.get_track(artist=artist, title=song).get_album().get_title()
       print(f"Retrieved album for {song}: {current_details['album']}")
     except:
       current_details['album'] = "icecast-scrobbler.albumnotfound"
       print(f"Couldn't find album: {song}")
-
-  if current_details['album'] != "icecast-scrobbler.albumnotfound":
-    LASTFM_NETWORK.update_now_playing(
-        artist=artist,
-        title=song,
-        album=current_details['album']
-    )
-  else:
-    LASTFM_NETWORK.update_now_playing(
-        artist=artist,
-        title=song
-    )
-
-  # If the song changed, update Last.fm
-  if last_details != current_details:
-    # Update the current now playing
-    print(f"Updated now playing: {artist} - {song}")
 
     # Scrobble the last song if there was a last song
     if last_details != {}:
