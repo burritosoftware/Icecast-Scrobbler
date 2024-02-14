@@ -12,6 +12,8 @@ def get_status():
         print("Error: Failed to retrieve JSON from URL")
         return None
     
-def get_source(index):
-    status = get_status()["icestats"]["source"][index]
-    return status
+def get_source():
+    if os.getenv("ICECAST_MULTI_SOURCE") == 'True':
+        return get_status()["icestats"]["source"][int(os.getenv("ICECAST_SOURCE"))]
+    else:
+        return get_status()["icestats"]["source"]
