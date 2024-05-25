@@ -5,8 +5,8 @@
 
 An Icecast internet radio scrobbler for Last.fm, primarily designed for [Friday Night Tracks](https://fridaynighttracks.com).
 
-## Disclaimer
-This is not pretty and I would like to make it a bit more convenient than running a Python script. As a constant work-in-progress, expect bugs!
+> [!WARNING]  
+> This is not pretty and I would like to make it a bit more convenient than running a Python script. As a constant work-in-progress, expect bugs!
 
 ## Get It Running
 1. Make sure you have Python installed.
@@ -15,6 +15,8 @@ This is not pretty and I would like to make it a bit more convenient than runnin
 pip install -U -r requirements.txt
 ```
 3. Duplicate `.env-example` to `.env`, and add a Last.fm API key and secret from https://www.last.fm/api/account/create.
+> [!NOTE]  
+> The configuration is, by default, set to xbn.fm/Friday Night Tracks and requires no further configuration. However, if you are using an Icecast stream that only outputs one source, set `ICECAST_MULTI_SOURCE` to `False`.
 ```
 cp .env-example .env
 nano .env

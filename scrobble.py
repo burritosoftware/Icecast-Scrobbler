@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 LASTFM_NETWORK = managers.lastfm.get_network()
-ICECAST_SOURCE = int(os.getenv("ICECAST_SOURCE"))
 UPDATE_FREQUENCY = int(os.getenv("UPDATE_FREQUENCY"))
 
 current_details = {}
@@ -16,7 +15,7 @@ last_details = {}
 # This should really not be a forever loop and should be cleaner later
 while True:
   # Get the current song and associated details
-  source = managers.icecast.get_source(ICECAST_SOURCE)
+  source = managers.icecast.get_source()
   details = source['title']
    # Check for both " - " and " -- " when splitting
   if " -- " in details:
