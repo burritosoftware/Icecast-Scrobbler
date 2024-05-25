@@ -18,7 +18,11 @@ while True:
   # Get the current song and associated details
   source = managers.icecast.get_source(ICECAST_SOURCE)
   details = source['title']
-  artist, song = details.rsplit(" - ", 1)
+   # Check for both " - " and " -- " when splitting
+  if " -- " in details:
+    artist, song = details.rsplit(" -- ", 1)
+  else:
+    artist, song = details.rsplit(" - ", 1)
   artist = artist.split(",")[0]
   remove_tags = ["(Original Mix)", "[FNT Edit]"]
   for tag in remove_tags:
