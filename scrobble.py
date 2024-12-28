@@ -24,6 +24,12 @@ while True:
     artist, song = details.rsplit(" - ", 1)
   artist = artist.split(",")[0]
   remove_tags = ["(Original Mix)", "[FNT Edit]", "[Explicit]"]
+  # If the ending tag starts with [FNT and ends with Edit], remove it also
+  if song[-1] == "]":
+    if song[-5:] == "[FNT]":
+      song = song[:-5]
+    elif song[-10:] == "[FNT Edit]":
+      song
   for tag in remove_tags:
     song = song.replace(tag, "").strip()
   
