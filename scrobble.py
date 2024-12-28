@@ -25,12 +25,8 @@ while True:
     artist, song = details.rsplit(" - ", 1)
   artist = artist.split(",")[0]
   
-  # Regex explanation:
-  # 1) \(Original Mix\)   -> matches literal "(Original Mix)"
-  # 2) \[Explicit\]       -> matches literal "[Explicit]"
-  # 3) \[FNT.*?Edit\]     -> matches any string starting with "[FNT",
-  #                          ending with "Edit]", and anything in between.
-  pattern = r"\(Original Mix\)|\[Explicit\]|\[FNT.*?Edit\]"
+  # Use provided regex, if none provided use the current FNT regex
+  pattern = os.getenv("TAG_REGEX", r"\(Original Mix\)|\[Explicit\]|\[FNT.*?Edit\]")
 
   # Remove matching substrings
   song = re.sub(pattern, "", song).strip()
