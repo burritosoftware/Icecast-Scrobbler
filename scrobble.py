@@ -3,6 +3,7 @@ import managers.lastfm
 import managers.icecast
 import time
 import os
+import re
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -23,15 +24,16 @@ while True:
   else:
     artist, song = details.rsplit(" - ", 1)
   artist = artist.split(",")[0]
-  remove_tags = ["(Original Mix)", "[FNT Edit]", "[Explicit]"]
-  # If the ending tag starts with [FNT and ends with Edit], remove it also
-  if song[-1] == "]":
-    if song[-5:] == "[FNT]":
-      song = song[:-5]
-    elif song[-10:] == "[FNT Edit]":
-      song
-  for tag in remove_tags:
-    song = song.replace(tag, "").strip()
+  
+  # Regex explanation:
+  # 1) \(Original Mix\)   -> matches literal "(Original Mix)"
+  # 2) \[Explicit\]       -> matches literal "[Explicit]"
+  # 3) \[FNT.*?Edit\]     -> matches any string starting with "[FNT",
+  #                          ending with "Edit]", and anything in between.
+  pattern = r"\(Original Mix\)|\[Explicit\]|\[FNT.*?Edit\]"
+
+  # Remove matching substrings
+  song = re.sub(pattern, "", song).strip()
   
   current_details['artist'] = artist
   current_details['song'] = song
