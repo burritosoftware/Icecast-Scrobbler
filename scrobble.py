@@ -23,7 +23,7 @@ while True:
   else:
     artist, song = details.rsplit(" - ", 1)
   artist = artist.split(",")[0]
-  remove_tags = ["(Original Mix)", "[FNT Edit]"]
+  remove_tags = ["(Original Mix)", "[FNT Edit]", "[Explicit]""]
   for tag in remove_tags:
     song = song.replace(tag, "").strip()
   
