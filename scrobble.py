@@ -26,7 +26,11 @@ while True:
   artist = artist.split(",")[0]
   
   # Use provided regex, if none provided use the current FNT regex
-  pattern = os.getenv("TAG_REGEX", r"\(Original Mix\)|\[Explicit\]|\[FNT.*?Edit\]")
+  fnt_regex = r"\(Original Mix\)|\(Extended Mix\)|\[Explicit\]|\[FNT.*?Edit\]"
+  pattern = fnt_regex
+  if os.getenv("TAG_REGEX") != "":
+    pattern = os.getenv("TAG_REGEX")
+  pattern = re.compile(pattern, re.IGNORECASE)
 
   # Remove matching substrings
   song = re.sub(pattern, "", song).strip()
