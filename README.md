@@ -1,3 +1,8 @@
+# WARNING: Now deprecated!
+I created a more robust scrobbler specifically for Friday Night Tracks that uses a direct API for better reliability. If you currently use this project to scrobble Friday Night Tracks, please switch to [FNT-Scrobbler](https://github.com/burritosoftware/FNT-Scrobbler)! If you use this for other Icecast streams, I don't really have motivation to continue maintaining this, so I will be archiving it, sorry :( Consider spinning up a fork to keep it alive if you want!
+
+---
+
 # Icecast Scrobbler
 ![Icons](https://skillicons.dev/icons?i=py)
 
